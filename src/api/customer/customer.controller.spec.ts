@@ -3,6 +3,7 @@ import { CustomerController } from './customer.controller';
 import { CreateCustomerDto } from '../dtos/create-customer.dto';
 import { Customer } from 'src/domain/entities/customer.entity';
 import { CustomerService } from '../../application/customer/customer.service';
+import { NotFoundException } from '@nestjs/common';
 
 describe('CustomerController', () => {
   let customerController: CustomerController;
@@ -16,6 +17,7 @@ describe('CustomerController', () => {
           provide: CustomerService,
           useValue: {
             createCustomer: jest.fn(),
+            getCustomerById: jest.fn(),
           },
         },
       ],
@@ -47,6 +49,37 @@ describe('CustomerController', () => {
       const result = await customerController.createCustomer(createCustomerDto);
 
       expect(result).toBe(mockCustomer);
+    });
+  });
+
+  describe('getCustomerById', () => {
+    it('should return a customer if found', async () => {
+      const customer: Customer = {
+        id: '1',
+        firstName: 'John',
+        middleName: 'Doe',
+        lastName: 'Smith',
+        emailAddress: 'john.doe@example.com',
+        phoneNumber: '1234567890',
+      };
+
+      jest
+        .spyOn(customerService, 'getCustomerById')
+        .mockResolvedValue(customer);
+
+      expect(await customerController.getCustomerById({ id: '1' })).toBe(
+        customer,
+      );
+    });
+
+    it('should throw a NotFoundException if customer is not found', async () => {
+      jest
+        .spyOn(customerService, 'getCustomerById')
+        .mockRejectedValue(new NotFoundException());
+
+      await expect(
+        customerController.getCustomerById({ id: '1' }),
+      ).rejects.toThrow(NotFoundException);
     });
   });
 });

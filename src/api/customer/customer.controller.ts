@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   UsePipes,
   ValidationPipe,
@@ -9,8 +10,12 @@ import {
 import { CustomerService } from 'src/application/customer/customer.service';
 import { Customer } from 'src/domain/entities/customer.entity';
 import { CreateCustomerDto } from '../dtos/create-customer.dto';
+import { GetCustomerByIdParams } from '../dtos/get-customer-by-id-params';
 
-@Controller('customers')
+@Controller({
+  version: '1',
+  path: 'customers',
+})
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
@@ -30,8 +35,11 @@ export class CustomerController {
     );
   }
 
-  @Get()
-  async getCustomers() {
-    return 'Hello World';
+  @Get(':id')
+  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+  async getCustomerById(
+    @Param() params: GetCustomerByIdParams,
+  ): Promise<Customer> {
+    return this.customerService.getCustomerById(params.id);
   }
 }

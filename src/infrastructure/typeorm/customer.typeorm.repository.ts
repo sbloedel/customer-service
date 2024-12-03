@@ -24,4 +24,21 @@ export class TypeOrmCustomerRepository implements CustomerRepository {
       result.id,
     );
   }
+
+  async findById(id: string): Promise<Customer | undefined> {
+    const result = await this.repository.findOne({
+      where: { id },
+    });
+    if (!result) {
+      return undefined;
+    }
+    return new Customer(
+      result.firstName,
+      result.middleName,
+      result.lastName,
+      result.emailAddress,
+      result.phoneNumber,
+      result.id,
+    );
+  }
 }

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Customer } from 'src/domain/entities/customer.entity';
 import { CustomerRepository } from 'src/domain/repositories/customer.repository';
 
@@ -24,5 +24,13 @@ export class CustomerService {
       phoneNumber,
     );
     return this.customerRepository.save(customer);
+  }
+
+  async getCustomerById(id: string): Promise<Customer> {
+    const customer = await this.customerRepository.findById(id);
+    if (!customer) {
+      throw new NotFoundException(`Customer with ID ${id} not found`);
+    }
+    return customer;
   }
 }
