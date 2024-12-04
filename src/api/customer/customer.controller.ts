@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -52,5 +53,10 @@ export class CustomerController {
     @Body() updateCustomerDto: UpdateCustomerDto,
   ): Promise<Customer> {
     return this.customerService.updateCustomer(params.id, updateCustomerDto);
+  }
+
+  @Delete(':id')
+  async deleteCustomer(@Param() params: GetCustomerByIdParams): Promise<void> {
+    return this.customerService.deleteCustomer(params.id);
   }
 }

@@ -59,4 +59,9 @@ export class CustomerService {
 
     return this.customerRepository.save(customer);
   }
+
+  async deleteCustomer(id: string): Promise<void> {
+    const customer = await this.getCustomerById(id);
+    await this.customerRepository.remove(customer);
+  }
 }

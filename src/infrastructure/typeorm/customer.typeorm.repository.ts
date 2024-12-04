@@ -41,4 +41,8 @@ export class TypeOrmCustomerRepository implements CustomerRepository {
       result.id,
     );
   }
+
+  async remove(customer: Customer): Promise<void> {
+    await this.repository.delete(customer.id);
+  }
 }
