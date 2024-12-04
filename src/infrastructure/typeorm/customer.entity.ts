@@ -1,6 +1,7 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, Index } from 'typeorm';
 
 @Entity('customers')
+@Index('IDX_PHONE_NUMBER', ['phoneNumber'])
 export class CustomerEntity {
   @PrimaryColumn()
   id: string;

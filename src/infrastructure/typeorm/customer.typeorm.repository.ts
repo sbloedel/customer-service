@@ -42,6 +42,23 @@ export class TypeOrmCustomerRepository implements CustomerRepository {
     );
   }
 
+  async findByPhoneNumber(phoneNumber: string): Promise<Customer | undefined> {
+    const result = await this.repository.findOne({
+      where: { phoneNumber },
+    });
+    if (!result) {
+      return undefined;
+    }
+    return new Customer(
+      result.firstName,
+      result.middleName,
+      result.lastName,
+      result.emailAddress,
+      result.phoneNumber,
+      result.id,
+    );
+  }
+
   async remove(customer: Customer): Promise<void> {
     await this.repository.delete(customer.id);
   }

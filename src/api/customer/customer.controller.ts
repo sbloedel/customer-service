@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -44,6 +45,15 @@ export class CustomerController {
     @Param() params: GetCustomerByIdParams,
   ): Promise<Customer> {
     return this.customerService.getCustomerById(params.id);
+  }
+
+  //TODO: will start by allowing the user to search by phone number and add more search options later
+  @Get()
+  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+  async getCustomerByPhoneNumber(
+    @Query('phoneNumber') phoneNumber: string,
+  ): Promise<Customer> {
+    return this.customerService.getCustomerByPhoneNumber(phoneNumber);
   }
 
   @Put(':id')

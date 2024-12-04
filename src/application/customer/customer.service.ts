@@ -30,7 +30,17 @@ export class CustomerService {
   async getCustomerById(id: string): Promise<Customer> {
     const customer = await this.customerRepository.findById(id);
     if (!customer) {
-      throw new NotFoundException(`Customer with ID ${id} not found`);
+      throw new NotFoundException(`Customer not found`);
+    }
+    return customer;
+  }
+
+  async getCustomerByPhoneNumber(phoneNumber: string): Promise<Customer> {
+    const customer = await this.customerRepository.findByPhoneNumber(
+      convertNumberToE164(phoneNumber),
+    );
+    if (!customer) {
+      throw new NotFoundException(`Customer not found`);
     }
     return customer;
   }
