@@ -82,4 +82,6 @@ describe('CustomerController', () => {
       ).rejects.toThrow(NotFoundException);
     });
   });
+
+  //TODO: Add tests for updateCustomer method and other controller methods
 });

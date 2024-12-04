@@ -93,4 +93,6 @@ describe('CustomerService', () => {
       expect(customerRepository.findById).toHaveBeenCalledWith('1');
     });
   });
+
+  //TODO: Add tests for updateCustomer and other service methods
 });

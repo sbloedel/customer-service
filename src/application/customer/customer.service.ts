@@ -2,6 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Customer } from 'src/domain/entities/customer.entity';
 import { CustomerRepository } from 'src/domain/repositories/customer.repository';
 import { convertNumberToE164 } from 'src/api/dtos/phone-number-validator';
+import { UpdateCustomerDto } from 'src/api/dtos/update-customer.dto';
 @Injectable()
 export class CustomerService {
   constructor(
@@ -32,5 +33,30 @@ export class CustomerService {
       throw new NotFoundException(`Customer with ID ${id} not found`);
     }
     return customer;
+  }
+
+  async updateCustomer(
+    id: string,
+    updateCustomerDto: UpdateCustomerDto,
+  ): Promise<Customer> {
+    const customer = await this.getCustomerById(id);
+
+    if (updateCustomerDto.firstName) {
+      customer.firstName = updateCustomerDto.firstName;
+    }
+    if (updateCustomerDto.middleName) {
+      customer.middleName = updateCustomerDto.middleName;
+    }
+    if (updateCustomerDto.lastName) {
+      customer.lastName = updateCustomerDto.lastName;
+    }
+    if (updateCustomerDto.emailAddress) {
+      customer.emailAddress = updateCustomerDto.emailAddress;
+    }
+    if (updateCustomerDto.phoneNumber) {
+      customer.phoneNumber = convertNumberToE164(updateCustomerDto.phoneNumber);
+    }
+
+    return this.customerRepository.save(customer);
   }
 }
