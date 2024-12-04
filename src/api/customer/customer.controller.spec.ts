@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CustomerController } from './customer.controller';
 import { CreateCustomerDto } from '../dtos/create-customer.dto';
-import { Customer } from 'src/domain/entities/customer.entity';
+import { Customer } from '../../domain/entities/customer.entity';
 import { CustomerService } from '../../application/customer/customer.service';
 import { NotFoundException } from '@nestjs/common';
 

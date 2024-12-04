@@ -3,7 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TypeOrmCustomerRepository } from './customer.typeorm.repository';
 import { CustomerEntity } from './customer.entity';
-import { Customer } from 'src/domain/entities/customer.entity';
+import { Customer } from '../../domain/entities/customer.entity';
 
 describe('TypeOrmCustomerRepository', () => {
   let repository: TypeOrmCustomerRepository;

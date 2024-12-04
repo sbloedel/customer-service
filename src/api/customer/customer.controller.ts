@@ -10,8 +10,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CustomerService } from 'src/application/customer/customer.service';
-import { Customer } from 'src/domain/entities/customer.entity';
+import { CustomerService } from '../../application/customer/customer.service';
+import { Customer } from '../..//domain/entities/customer.entity';
 import { CreateCustomerDto } from '../dtos/create-customer.dto';
 import { GetCustomerByIdParams } from '../dtos/get-customer-by-id-params';
 import { UpdateCustomerDto } from '../dtos/update-customer.dto';

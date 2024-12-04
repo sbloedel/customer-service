@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CustomerService } from './customer.service';
-import { CustomerRepository } from 'src/domain/repositories/customer.repository';
-import { Customer } from 'src/domain/entities/customer.entity';
+import { CustomerRepository } from '../../domain/repositories/customer.repository';
+import { Customer } from '../../domain/entities/customer.entity';
 import * as uuid from 'uuid';
 import { NotFoundException } from '@nestjs/common';
 

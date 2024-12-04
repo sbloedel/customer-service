@@ -1,8 +1,8 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { Customer } from 'src/domain/entities/customer.entity';
-import { CustomerRepository } from 'src/domain/repositories/customer.repository';
-import { convertNumberToE164 } from 'src/api/dtos/phone-number-validator';
-import { UpdateCustomerDto } from 'src/api/dtos/update-customer.dto';
+import { Customer } from '../../domain/entities/customer.entity';
+import { CustomerRepository } from '../../domain/repositories/customer.repository';
+import { convertNumberToE164 } from '../../api/dtos/phone-number-validator';
+import { UpdateCustomerDto } from '../../api/dtos/update-customer.dto';
 @Injectable()
 export class CustomerService {
   constructor(
