@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Customer } from 'src/domain/entities/customer.entity';
 import { CustomerRepository } from 'src/domain/repositories/customer.repository';
-
+import { convertNumberToE164 } from 'src/api/dtos/phone-number-validator';
 @Injectable()
 export class CustomerService {
   constructor(
@@ -21,7 +21,7 @@ export class CustomerService {
       middleName,
       lastName,
       emailAddress,
-      phoneNumber,
+      convertNumberToE164(phoneNumber),
     );
     return this.customerRepository.save(customer);
   }

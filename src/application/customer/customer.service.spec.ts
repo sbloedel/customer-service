@@ -39,14 +39,15 @@ describe('CustomerService', () => {
       const middleName = 'Doe';
       const lastName = 'Smith';
       const emailAddress = 'john.doe@example.com';
-      const phoneNumber = '1234567890';
+      const phoneNumber = '5034569874';
+      const E164PhoneNumber = '+15034569874';
 
       const customer = new Customer(
         firstName,
         middleName,
         lastName,
         emailAddress,
-        phoneNumber,
+        E164PhoneNumber,
         'fixed-uuid',
       );
 
