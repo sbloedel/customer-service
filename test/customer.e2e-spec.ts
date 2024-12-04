@@ -5,6 +5,7 @@ import { AppModule } from '../src/app.module';
 import { CreateCustomerDto } from '../src/api/dtos/create-customer.dto';
 
 //TODO: I got stuck on this one.  I couldn't figure out how to truncate the db tables between tests
+//TODO: Need to consider a few error cases here (ie bad requests, not found errors, etc)
 describe('CustomerController (e2e)', () => {
   let app: INestApplication;
 
