@@ -5,6 +5,10 @@ The customer-service application is a sample [Nest](https://github.com/nestjs/ne
 
 It provides a basic CRUD API that reads and writes customer information stored in a Postgres database.
 
+### Things to note
+- Due to time constraints, there are limited unit tests.  We need to go back and cover some areas that were skipped including some of the CRUD operations and utility classes.
+- Search for 'TODO:' in the code and you will see notes on areas that need further implementation consideration
+
 ## Prerequisites
 Install [Docker](https://www.docker.com/)
 

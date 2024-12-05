@@ -9,11 +9,11 @@ import { CustomerEntity } from './infrastructure/typeorm/customer.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost', //TODO: Use env variable
-      port: 5432, //TODO: Use env variable
-      username: 'postgres', //TODO: Use env variable
-      password: 'pass123', //TODO: Use env variable or secrets manager
-      database: 'postgres', //TODO: Use env variable
+      host: process.env.DB_HOST || 'localhost',
+      port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
+      username: process.env.DB_USERNAME || 'postgres',
+      password: process.env.DB_PASSWORD || 'pass123',
+      database: process.env.DB_NAME || 'postgres',
       entities: [CustomerEntity],
       synchronize: true,
     }),
