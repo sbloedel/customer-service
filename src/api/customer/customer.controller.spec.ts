@@ -4,6 +4,7 @@ import { CreateCustomerDto } from '../dtos/create-customer.dto';
 import { Customer } from '../../domain/entities/customer.entity';
 import { CustomerService } from '../../application/customer/customer.service';
 import { NotFoundException } from '@nestjs/common';
+import { WinstonLoggerService } from '../../core/logger/winston-logger.service';
 
 describe('CustomerController', () => {
   let customerController: CustomerController;
@@ -20,6 +21,7 @@ describe('CustomerController', () => {
             getCustomerById: jest.fn(),
           },
         },
+        WinstonLoggerService,
       ],
     }).compile();
 

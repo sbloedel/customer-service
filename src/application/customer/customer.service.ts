@@ -49,14 +49,11 @@ export class CustomerService {
     return customer;
   }
 
-  async getCustomerByPhoneNumber(phoneNumber: string): Promise<Customer> {
-    const customer = await this.customerRepository.findByPhoneNumber(
+  async getCustomerByPhoneNumber(phoneNumber: string): Promise<Customer[]> {
+    const customers = await this.customerRepository.findByPhoneNumber(
       convertNumberToE164(phoneNumber),
     );
-    if (!customer) {
-      throw new NotFoundException(`Customer not found`);
-    }
-    return customer;
+    return customers;
   }
 
   async updateCustomer(

@@ -54,24 +54,25 @@ export class TypeOrmCustomerRepository implements CustomerRepository {
     }
   }
 
-  async findByPhoneNumber(phoneNumber: string): Promise<Customer | undefined> {
+  async findByPhoneNumber(phoneNumber: string): Promise<Customer[]> {
     try {
-      const result = await this.repository.findOne({
+      const result = await this.repository.find({
         where: { phoneNumber },
       });
-      if (!result) {
-        return undefined;
-      }
-      return new Customer(
-        result.firstName,
-        result.middleName,
-        result.lastName,
-        result.emailAddress,
-        result.phoneNumber,
-        result.id,
+
+      return result.map(
+        (item) =>
+          new Customer(
+            item.firstName,
+            item.middleName,
+            item.lastName,
+            item.emailAddress,
+            item.phoneNumber,
+            item.id,
+          ),
       );
     } catch (error) {
-      this.logger.error('Database error finding customer by query', error);
+      this.logger.error('Database error finding customers by query', error);
       throw error;
     }
   }

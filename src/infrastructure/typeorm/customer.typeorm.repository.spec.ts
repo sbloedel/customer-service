@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { TypeOrmCustomerRepository } from './customer.typeorm.repository';
 import { CustomerEntity } from './customer.entity';
 import { Customer } from '../../domain/entities/customer.entity';
+import { WinstonLoggerService } from '../../core/logger/winston-logger.service';
 
 describe('TypeOrmCustomerRepository', () => {
   let repository: TypeOrmCustomerRepository;
@@ -17,6 +18,7 @@ describe('TypeOrmCustomerRepository', () => {
           provide: getRepositoryToken(CustomerEntity),
           useClass: Repository<CustomerEntity>,
         },
+        WinstonLoggerService,
       ],
     }).compile();
 
@@ -93,4 +95,6 @@ describe('TypeOrmCustomerRepository', () => {
       });
     });
   });
+
+  //TODO: Add tests for findByPhoneNumber.  Skipped due to time constraints
 });

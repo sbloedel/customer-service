@@ -57,7 +57,7 @@ export class CustomerController {
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async getCustomerByPhoneNumber(
     @Query('phoneNumber') phoneNumber: string,
-  ): Promise<Customer> {
+  ): Promise<Customer[]> {
     this.logger.debug('getCustomerByPhoneNumber endpoint called');
     return this.customerService.getCustomerByPhoneNumber(phoneNumber);
   }
