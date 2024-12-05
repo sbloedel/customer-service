@@ -26,12 +26,13 @@ It provides a basic CRUD API that reads and writes customer information stored i
 $ npm install
 ```
 
-## Start the local database, Prometheus and Grafana
+## Running the entire application in Docker
+You can run the entire application within docker-compose and access it on local port 3002
 ```bash
 $ docker-compose up
 ```
 
-## Compile and run the project
+## Compile and run the project on your host machine (not within Docker)
 
 ```bash
 # development
