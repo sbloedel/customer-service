@@ -27,7 +27,6 @@ export class CustomerController {
     private readonly logger: WinstonLoggerService,
   ) {}
 
-  //TODO: Need to handle errors better (ie 409 conflicts)
   @Post()
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async createCustomer(
@@ -63,7 +62,6 @@ export class CustomerController {
     return this.customerService.getCustomerByPhoneNumber(phoneNumber);
   }
 
-  //TODO: Need to handle errors better (ie 409 conflicts)
   @Put(':id')
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async updateCustomer(

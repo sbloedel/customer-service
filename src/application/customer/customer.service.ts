@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Customer } from '../../domain/entities/customer.entity';
 import { CustomerRepository } from '../../domain/repositories/customer.repository';
 import { convertNumberToE164 } from '../../api/dtos/phone-number-validator';
@@ -24,7 +29,16 @@ export class CustomerService {
       emailAddress,
       convertNumberToE164(phoneNumber),
     );
-    return this.customerRepository.save(customer);
+    try {
+      return await this.customerRepository.save(customer);
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new ConflictException(
+          `Customer with email address already exists`,
+        );
+      }
+      throw error;
+    }
   }
 
   async getCustomerById(id: string): Promise<Customer> {
@@ -67,7 +81,16 @@ export class CustomerService {
       customer.phoneNumber = convertNumberToE164(updateCustomerDto.phoneNumber);
     }
 
-    return this.customerRepository.save(customer);
+    try {
+      return await this.customerRepository.save(customer);
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new ConflictException(
+          `Customer with email address already exists`,
+        );
+      }
+      throw error;
+    }
   }
 
   async deleteCustomer(id: string): Promise<void> {
