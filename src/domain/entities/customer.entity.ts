@@ -25,6 +25,6 @@ export class Customer {
     this.middleName = middleName;
     this.lastName = lastName;
     this.emailAddress = emailAddress;
-    this.phoneNumber = phoneNumber;
+    this.phoneNumber = phoneNumber; //TODO: I opted to keep this as a E.164 string for simplicity, but perhaps there are benefits to a composite phone number that should be considered
   }
 }

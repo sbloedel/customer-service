@@ -53,6 +53,7 @@ export class CustomerController {
     return this.customerService.getCustomerById(params.id);
   }
 
+  //TODO: At this time, we can lookup a customer by phone number, but we may want to consider other ways to lookup a customer (ie Last Name, Email Address, etc)
   @Get()
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async getCustomerByPhoneNumber(
