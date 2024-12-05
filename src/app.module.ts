@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { CustomerModule } from './customer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerEntity } from './infrastructure/typeorm/customer.entity';
+import { WinstonLoggerService } from './core/logger/winston-logger.service';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { CustomerEntity } from './infrastructure/typeorm/customer.entity';
     CustomerModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, WinstonLoggerService],
+  exports: [WinstonLoggerService],
 })
 export class AppModule {}

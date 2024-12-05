@@ -8,6 +8,7 @@ It provides a basic CRUD API that reads and writes customer information stored i
 ### Things to note
 - Due to time constraints, there are limited unit tests.  We need to go back and cover some areas that were skipped including some of the CRUD operations and utility classes.
 - Search for 'TODO:' in the code and you will see notes on areas that need further implementation consideration
+- I added a basic Winston logger that can be used to send a JSON formatted log message to Sumologic or Logz.
 
 ## Prerequisites
 Install [Docker](https://www.docker.com/)
