@@ -18,7 +18,7 @@ Install [Docker](https://www.docker.com/)
 $ npm install
 ```
 
-## Start the local database
+## Start the local database, Prometheus and Grafana
 ```bash
 $ docker-compose up
 ```
@@ -80,6 +80,18 @@ select * from public.customers;
 truncate public.customers;
 ```
 
+## Connecting to Grafana
+Prometheus and Grafana aren't quite configured correctly and I'm unfamiliar with getting it setup.
+- Go to http://localhost:3001 in your browser
+- username: admin, password: admin
+- Go to Connections -> Data sources in the left nav
+- Add a new 'prometheus' data source with a url of http://host.docker.internal:9090
+- Go to Connections -> Data sources in the left nav
+- Select prometheus
+- Go to the Dashboards tab
+- Import the sample dashboards (Prometheus Stats, Prometheus 2.0 Stats, Grafana metrics)
+- Go to Dashboards in the left nav
+- Select the dashboards that were just imported to see metrics
 
 ## License
 

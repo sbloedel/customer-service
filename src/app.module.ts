@@ -5,6 +5,7 @@ import { CustomerModule } from './customer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerEntity } from './infrastructure/typeorm/customer.entity';
 import { WinstonLoggerService } from './core/logger/winston-logger.service';
+import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { WinstonLoggerService } from './core/logger/winston-logger.service';
       synchronize: true,
     }),
     CustomerModule,
+    PrometheusModule.register(),
   ],
   controllers: [AppController],
   providers: [AppService, WinstonLoggerService],
