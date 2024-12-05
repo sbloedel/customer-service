@@ -62,8 +62,25 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Connecting to the API via CLI (STEP 7)
-Fill this out
+## Executing methods on the API via CLI (STEP 7)
+```bash
+#Creating a new customer
+curl -X POST "http://localhost:3000/v1/customers" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "firstName": "John",
+           "middleName": "Doe",
+           "lastName": "Smith",
+           "emailAddress": "john.smith@example.com",
+           "phoneNumber": "5035551212"
+         }'
+
+#Fetching a customer
+curl -X GET "http://localhost:3000/v1/customers?phoneNumber=(503)555-1212"
+
+#Deleting a customer
+curl -X DELETE "http://localhost:3000/v1/customers/{id}"
+```
 
 ## Connecting to the database (Optional)
 If you want to connect to the psql database running in Docker, you'll need to install psql or a database UI client like [DBeaver](https://dbeaver.io/download/).  
