@@ -9,6 +9,8 @@ It provides a basic CRUD API that reads and writes customer information stored i
 - Due to time constraints, there are limited unit tests.  We need to go back and cover some areas that were skipped including some of the CRUD operations and utility classes.
 - Search for 'TODO:' in the code and you will see notes on areas that need further implementation consideration
 - I added a basic Winston logger that can be used to send a JSON formatted log message to Sumologic or Logz.
+- Authentication has not been implemented at this time.  It would need to be implemented before deploying to PROD.
+- Need to consider Swagger documentation for this API which has not been done yet
 
 ## Prerequisites
 Install [Docker](https://www.docker.com/)
@@ -92,6 +94,9 @@ Prometheus and Grafana aren't quite configured correctly and I'm unfamiliar with
 - Import the sample dashboards (Prometheus Stats, Prometheus 2.0 Stats, Grafana metrics)
 - Go to Dashboards in the left nav
 - Select the dashboards that were just imported to see metrics
+
+## Need Distributed Tracing
+This project needs distributed tracing setup using OpenTelemetry or some other option.  It has not been implemented at this time
 
 ## License
 

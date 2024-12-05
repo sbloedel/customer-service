@@ -7,6 +7,7 @@ import { CustomerEntity } from './infrastructure/typeorm/customer.entity';
 import { WinstonLoggerService } from './core/logger/winston-logger.service';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 
+//TODO: Need to use @nestjs/config configuration management service to load the configuration settings from env variables
 @Module({
   imports: [
     TypeOrmModule.forRoot({
