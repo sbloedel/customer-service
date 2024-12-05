@@ -27,7 +27,7 @@ export class CustomerService {
       middleName,
       lastName,
       emailAddress,
-      convertNumberToE164(phoneNumber),
+      convertNumberToE164(phoneNumber), //TODO: Consider moving this to the domain object instead
     );
     try {
       return await this.customerRepository.save(customer);
@@ -77,7 +77,7 @@ export class CustomerService {
       customer.emailAddress = updateCustomerDto.emailAddress;
     }
     if (updateCustomerDto.phoneNumber) {
-      customer.phoneNumber = convertNumberToE164(updateCustomerDto.phoneNumber);
+      customer.phoneNumber = convertNumberToE164(updateCustomerDto.phoneNumber); //TODO: Consider moving this to the domain object instead
     }
 
     try {
