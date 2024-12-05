@@ -6,16 +6,20 @@ The customer-service application is a sample [Nest](https://github.com/nestjs/ne
 It provides a basic CRUD API that reads and writes customer information stored in a Postgres database.
 
 ### Things to note
-- Due to time constraints, there are limited unit tests.  We need to go back and cover some areas that were skipped including some of the CRUD operations and utility classes.
+- Due to time constraints, there are limited unit tests.  We need to go back and cover some areas that were skipped including some of the CRUD operations and utility classes.  Integration/Acceptance tests need a little work too.  There are some comments in the Testing section below on next steps.
 - Search for 'TODO:' in the code and you will see notes on areas that need further implementation consideration
 - I added a basic Winston logger that can be used to send a JSON formatted log message to Sumologic or Logz.
 - Authentication has not been implemented at this time.  It would need to be implemented before deploying to PROD.
-- Need to consider Swagger documentation for this API which has not been done yet
+- Need to consider Swagger documentation for this API which has not been done yet and how can we integrate either a design first approach, or automatically generate the documentation as part of CI/CD.
 - Exception Handling needs some further consideration.  We need to make sure that exceptions are sent to a monitoring tool like Sentry so the development team can be alerted when things go wrong.  We also need to make sure that repository specific errors don't leak into the Application (service) layer.  See TODO comments in code and consider ExceptionFilters
+- Need to consider distributed tracing setup using OpenTelemetry or some other option.  It has not been implemented at this time.
+- Due to time constraints, I did not implement a Kubernetes deployment at this time (STEP 5).  I know how to use kubectl to connect to deployed images and view logs, restart services, etc, and I know how to modify helm charts, but typically Kubernetes is setup for me in AWS.  I'm not familiar enough with running Kubernetes locally and deploying docker images to a local Kubernetes cluster.
+- CI/CD Pipeline designs can be found [here](CI-CD/ci-cd-pipeline.md)
 
 ## Prerequisites
 - Install [Docker](https://www.docker.com/)
 - Install [Node](https://nodejs.org/en/download/package-manager).  Consider using [NVM](https://github.com/nvm-sh/nvm) to easily switch between Node versions.
+- Install [MiniKube](https://minikube.sigs.k8s.io/docs/) to deploy to a locally running Kubernetes cluster
 
 ## Project setup
 ```bash
@@ -58,6 +62,9 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Connecting to the API via CLI (STEP 7)
+Fill this out
+
 ## Connecting to the database (Optional)
 If you want to connect to the psql database running in Docker, you'll need to install psql or a database UI client like [DBeaver](https://dbeaver.io/download/).  
 
@@ -96,9 +103,6 @@ Prometheus and Grafana aren't quite configured correctly and I'm unfamiliar with
 - Import the sample dashboards (Prometheus Stats, Prometheus 2.0 Stats, Grafana metrics)
 - Go to Dashboards in the left nav
 - Select the dashboards that were just imported to see metrics
-
-## Need Distributed Tracing
-This project needs distributed tracing setup using OpenTelemetry or some other option.  It has not been implemented at this time
 
 ## License
 
