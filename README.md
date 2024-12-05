@@ -62,7 +62,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Executing methods on the API via CLI (STEP 7)
+## Executing methods on the API via CLI
 ```bash
 #Creating a new customer
 curl -X POST "http://localhost:3000/v1/customers" \
