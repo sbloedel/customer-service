@@ -32,11 +32,13 @@ export class CustomerService {
     try {
       return await this.customerRepository.save(customer);
     } catch (error) {
+      //TODO: This leaks the specific database error to the service. Consider refactoring
       if (error.code === '23505') {
         throw new ConflictException(
           `Customer with email address already exists`,
         );
       }
+      //TODO: Need to send this information to monitoring service like Sentry
       throw error;
     }
   }
@@ -81,11 +83,13 @@ export class CustomerService {
     try {
       return await this.customerRepository.save(customer);
     } catch (error) {
+      //TODO: This leaks the specific database error to the service. Consider refactoring
       if (error.code === '23505') {
         throw new ConflictException(
           `Customer with email address already exists`,
         );
       }
+      //TODO: Need to send this information to monitoring service like Sentry
       throw error;
     }
   }

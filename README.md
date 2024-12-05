@@ -11,9 +11,11 @@ It provides a basic CRUD API that reads and writes customer information stored i
 - I added a basic Winston logger that can be used to send a JSON formatted log message to Sumologic or Logz.
 - Authentication has not been implemented at this time.  It would need to be implemented before deploying to PROD.
 - Need to consider Swagger documentation for this API which has not been done yet
+- Exception Handling needs some further consideration.  We need to make sure that exceptions are sent to a monitoring tool like Sentry so the development team can be alerted when things go wrong.  We also need to make sure that repository specific errors don't leak into the Application (service) layer.  See TODO comments in code and consider ExceptionFilters
 
 ## Prerequisites
-Install [Docker](https://www.docker.com/)
+- Install [Docker](https://www.docker.com/)
+- Install [Node](https://nodejs.org/en/download/package-manager).  Consider using [NVM](https://github.com/nvm-sh/nvm) to easily switch between Node versions.
 
 ## Project setup
 ```bash
