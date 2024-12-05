@@ -8,12 +8,12 @@ It provides a basic CRUD API that reads and writes customer information stored i
 ### Things to note
 - Due to time constraints, there are limited unit tests.  We need to go back and cover some areas that were skipped including some of the CRUD operations and utility classes.  Integration/Acceptance tests need a little work too.  There are some comments in the Testing section below on next steps.
 - Search for 'TODO:' in the code and you will see notes on areas that need further implementation consideration
-- I added a basic Winston logger that can be used to send a JSON formatted log message to Sumologic or Logz.
-- Authentication has not been implemented at this time.  It would need to be implemented before deploying to PROD.
-- Need to consider Swagger documentation for this API which has not been done yet and how can we integrate either a design first approach, or automatically generate the documentation as part of CI/CD.
-- Exception Handling needs some further consideration.  We need to make sure that exceptions are sent to a monitoring tool like Sentry so the development team can be alerted when things go wrong.  We also need to make sure that repository specific errors don't leak into the Application (service) layer.  See TODO comments in code and consider ExceptionFilters
+- A basic Winston logger has been implemented that can be used to send a JSON formatted log messages to a log collector like Sumologic or Logz.
+- Authentication has not been implemented at this time.  It would need to be implemented before being deployed.
+- Need to consider Swagger documentation for this API which has not been done yet and how can we integrate either a design first approach, or automatically generate the documentation manually or as part of CI/CD.
+- Exception Handling needs some further consideration.  We need to make sure that exceptions are sent to a monitoring tool like Sentry, Datadog or New Relic so the development team can be alerted when things go wrong.  We also need to make sure that repository specific errors don't leak into the Application (service) layer.  See TODO comments in code and consider ExceptionFilters
 - Need to consider distributed tracing setup using OpenTelemetry or some other option.  It has not been implemented at this time.
-- Due to time constraints, I did not implement a Kubernetes deployment at this time (STEP 5).  I know how to use kubectl to connect to deployed images and view logs, restart services, etc, and I know how to modify helm charts, but typically Kubernetes is setup for me in AWS.  I'm not familiar enough with running Kubernetes locally and deploying docker images to a local Kubernetes cluster.
+- Kubernetes deployment has not been completed yet.  Typically Kubernetes is setup in the cloud (such as AWS).  I'm not familiar enough with running Kubernetes locally and deploying docker images to a local Kubernetes cluster and/or the benefits of doing so.
 - CI/CD Pipeline designs can be found [here](CI-CD/ci-cd-pipeline.md)
 
 ## Prerequisites
