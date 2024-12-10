@@ -32,13 +32,13 @@ export class CustomerService {
     try {
       return await this.customerRepository.save(customer);
     } catch (error) {
-      //TODO: This leaks the specific database error to the service. Consider refactoring
+      //TODO: This leaks the specific database error to the service. Consider refactoring and use a custom exception
       if (error.code === '23505') {
-        throw new ConflictException(
+        throw new ConflictException( //TODO: Consider using a custom application layer exception and having the API layer throw ConflictException
           `Customer with email address already exists`,
         );
       }
-      //TODO: Need to send this information to monitoring service like Sentry
+      //TODO: Need to send this information to monitoring service like Sentry.  Look into Exception Filters
       throw error;
     }
   }
@@ -83,13 +83,13 @@ export class CustomerService {
     try {
       return await this.customerRepository.save(customer);
     } catch (error) {
-      //TODO: This leaks the specific database error to the service. Consider refactoring
+      //TODO: This leaks the specific database error to the service. Consider refactoring and use a custom exception
       if (error.code === '23505') {
-        throw new ConflictException(
+        throw new ConflictException( //TODO: Consider using a custom application layer exception and having the API layer throw ConflictException
           `Customer with email address already exists`,
         );
       }
-      //TODO: Need to send this information to monitoring service like Sentry
+      //TODO: Need to send this information to monitoring service like Sentry.  Look into Exception Filters
       throw error;
     }
   }

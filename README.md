@@ -11,9 +11,10 @@ It provides a basic CRUD API that reads and writes customer information stored i
 - A basic Winston logger has been implemented that can be used to send a JSON formatted log messages to a log collector like Sumologic or Logz.
 - Authentication has not been implemented at this time.  It would need to be implemented before being deployed.
 - Need to consider Swagger documentation for this API which has not been done yet and how can we integrate either a design first approach, or automatically generate the documentation manually or as part of CI/CD.
-- Exception Handling needs some further consideration.  We need to make sure that exceptions are sent to a monitoring tool like Sentry, Datadog or New Relic so the development team can be alerted when things go wrong.  We also need to make sure that repository specific errors don't leak into the Application (service) layer.  See TODO comments in code and consider ExceptionFilters
+- Exception Handling needs some further consideration.  We need to make sure that exceptions are sent to a monitoring tool like Sentry, Datadog or New Relic so the development team can be alerted when things go wrong.  We also need to make sure that repository specific errors don't leak into the Application (service) layer.  See TODO comments in code and consider ExceptionFilters and should consider custom Exceptions at the Infrastructure, Application and API layers.
 - Need to consider distributed tracing setup using OpenTelemetry or some other option.  It has not been implemented at this time.
 - Kubernetes deployment has not been completed yet.  Typically Kubernetes is setup in the cloud (such as AWS).  I'm not familiar enough with running Kubernetes locally and deploying docker images to a local Kubernetes cluster and/or the benefits of doing so.
+- Need to consider rate limits 429 response in the Kubernetes layer to prevent abuse/overuse/DDOS of the API from a single user
 - CI/CD Pipeline designs can be found [here](CI-CD/ci-cd-pipeline.md)
 
 ## Prerequisites

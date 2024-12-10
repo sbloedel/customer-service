@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
+//TODO: Consider making the fields private and adding getters and setters for proper validation of all properties
 export class Customer {
   readonly id: string;
   firstName: string;
@@ -24,7 +25,7 @@ export class Customer {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
-    this.emailAddress = emailAddress;
+    this.emailAddress = emailAddress; //TODO: Consider adding validation for email address
     this.phoneNumber = phoneNumber; //TODO: I opted to keep this as a E.164 string for simplicity, but perhaps there are benefits to a composite phone number that should be considered
   }
 }
